@@ -1,0 +1,42 @@
+pipeline {
+    agent any // Use any available agent or node
+
+    stages {
+        stage('Initialization') {
+            steps {
+                echo 'Starting the pipeline...' // Print message in the console
+            }
+        }
+
+        stage('Hello World') {
+            steps {
+                echo 'Hello, World!' // Simple message output
+            }
+        }
+
+        stage('Run Shell Command') {
+            steps {
+                sh 'echo This is a shell command execution!' // Run a shell command
+            }
+        }
+
+        stage('Completion') {
+            steps {
+                echo 'Pipeline execution completed successfully!' // Final message
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'Cleaning up resources...' // Runs regardless of build result
+        }
+        success {
+            echo 'Pipeline completed successfully!' // Runs if the pipeline succeeds
+        }
+        failure {
+            echo 'Pipeline failed. Check logs for details.' // Runs if the pipeline fails
+        }
+    }
+}
+
