@@ -1,41 +1,10 @@
 pipeline {
-    agent any // Use any available agent or node
-
+    agent any
     stages {
-        stage('Initialization') {
+        stage('Run Shell Script') {
             steps {
-                echo 'Starting the pipeline...' // Print message in the console
+                sh '/home/ec2-user/Shell-project/script.sh' // Replace with the path to your shell script
             }
-        }
-
-        stage('Hello World') {
-            steps {
-                echo 'Hello, World!' // Simple message output
-            }
-        }
-
-        stage('Run Shell Command') {
-            steps {
-                sh 'echo This is a shell command execution!' // Run a shell command
-            }
-        }
-
-        stage('Completion') {
-            steps {
-                echo 'Pipeline execution completed successfully!' // Final message
-            }
-        }
-    }
-
-    post {
-        always {
-            echo 'Cleaning up resources...' // Runs regardless of build result
-        }
-        success {
-            echo 'Pipeline completed successfully!' // Runs if the pipeline succeeds
-        }
-        failure {
-            echo 'Pipeline failed. Check logs for details.' // Runs if the pipeline fails
         }
     }
 }
